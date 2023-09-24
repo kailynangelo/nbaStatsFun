@@ -33,4 +33,16 @@ class UserDaoTest {
         assertEquals(1, users.size());
         assertEquals("Angelo", users.get(0).getLastName());
     }
+
+
+    @Test
+    void insertSuccess() {
+        User user = new User("Florence", "Jenkins", "flojenk", "student");
+        int id = dao.insert(user);
+        assertNotEquals(0, id);
+        List<User> users = dao.getAllUsers();
+        assertEquals(5, users.size());
+        List<User> userbyname = dao.getByUserName("flojenk");
+        assertEquals("Florence", userbyname.get(0).getFirstName());
+    }
 }
