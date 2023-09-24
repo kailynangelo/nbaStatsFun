@@ -9,10 +9,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The User dao test.
+ */
 class UserDaoTest {
 
+    /**
+     * The Dao.
+     */
     UserDao dao;
 
+    /**
+     * Set up for unit tests.
+     */
     @BeforeEach
     void setUp() {
 
@@ -21,12 +30,18 @@ class UserDaoTest {
         database.runSQL("cleandb.sql");
     }
 
+    /**
+     * Verifies success of get all users method.
+     */
     @Test
     void getAllUsers() {
         List<User> users = dao.getAllUsers();
         assertEquals(4, users.size());
     }
 
+    /**
+     * Verifies get user by user name method.
+     */
     @Test
     void getUserByUserName() {
         List<User> users = dao.getByUserName("kangelo");
@@ -35,6 +50,9 @@ class UserDaoTest {
     }
 
 
+    /**
+     * Verifies insert success.
+     */
     @Test
     void insertSuccess() {
         User user = new User("Florence", "Jenkins", "flojenk", "student");
@@ -46,6 +64,9 @@ class UserDaoTest {
         assertEquals("Florence", userbyname.get(0).getFirstName());
     }
 
+    /**
+     * Verifies update success.
+     */
     @Test
     void updateSuccess() {
         String newLastName = "Celinski";
@@ -58,6 +79,9 @@ class UserDaoTest {
         assertEquals(newLastName, updatedUser.getLastName());
     }
 
+    /**
+     * Verifies delete success.
+     */
     @Test
     void deleteSuccess() {
 

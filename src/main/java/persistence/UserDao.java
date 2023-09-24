@@ -13,12 +13,20 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * User class DAO.
+ */
 public class UserDao {
 
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Gets a list of all users.
+     *
+     * @return a list of users
+     */
     public List<User> getAllUsers() {
 
         Session session = sessionFactory.openSession();
@@ -33,6 +41,12 @@ public class UserDao {
         return users;
     }
 
+    /**
+     * Gets user by username.
+     *
+     * @param username the username
+     * @return the User with given username
+     */
     public List<User> getByUserName(String username) {
 
         logger.debug("Searching for: {}", username);
@@ -48,6 +62,12 @@ public class UserDao {
         return user;
     }
 
+    /**
+     * Insert user into database
+     *
+     * @param user the user to be inserted
+     * @return number of rows affected (1 if success)
+     */
     public int insert(User user) {
 
         int id = 0;
@@ -59,6 +79,11 @@ public class UserDao {
         return id;
     }
 
+    /**
+     * Make updates to a given user
+     *
+     * @param user the user to update
+     */
     public void saveOrUpdate(User user) {
 
         Session session = sessionFactory.openSession();
@@ -68,6 +93,11 @@ public class UserDao {
         session.close();
     }
 
+    /**
+     * Delete a user from the database
+     *
+     * @param user the user to delete
+     */
     public void delete(User user) {
 
         Session session = sessionFactory.openSession();
