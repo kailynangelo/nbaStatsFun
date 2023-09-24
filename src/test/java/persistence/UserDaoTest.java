@@ -7,8 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoTest {
 
+    UserDao dao;
+
     @BeforeEach
     void setUp() {
+
+        dao = new UserDao();
     }
 
     @Test
