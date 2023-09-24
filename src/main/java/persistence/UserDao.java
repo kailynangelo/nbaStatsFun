@@ -1,6 +1,8 @@
 package persistence;
 
 import entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -13,6 +15,8 @@ public class UserDao {
 
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+    //private final Logger logger = LogManager.getLogger(this.getClass());
+
     public List<User> getAllUsers() {
 
         Session session = sessionFactory.openSession();
@@ -21,6 +25,8 @@ public class UserDao {
         Root<User> root = query.from(User.class);
         List<User> users = session.createQuery(query).getResultList();
         session.close();
+
+        //logger.debug("List of users: " + users);
 
         return users;
     }

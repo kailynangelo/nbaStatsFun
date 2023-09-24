@@ -2,11 +2,10 @@ package entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity(name = "User")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -19,7 +18,6 @@ public class User {
     private String lastName;
     @Column(name = "user_name")
     private String userName;
-
     @Column(name = "password")
     private String password;
 
