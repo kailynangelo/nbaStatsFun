@@ -48,8 +48,6 @@ public class UserDao {
         return user;
     }
 
-    // TODO add get user by id
-
     public int insert(User user) {
 
         int id = 0;
@@ -59,6 +57,15 @@ public class UserDao {
         transaction.commit();
         session.close();
         return id;
+    }
+
+    public void saveOrUpdate(User user) {
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(user);
+        transaction.commit();
+        session.close();
     }
 
 

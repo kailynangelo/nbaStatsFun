@@ -45,4 +45,16 @@ class UserDaoTest {
         List<User> userbyname = dao.getByUserName("flojenk");
         assertEquals("Florence", userbyname.get(0).getFirstName());
     }
+
+    @Test
+    void updateSuccess() {
+        String newLastName = "Celinski";
+        List<User> users = dao.getByUserName("stantheman");
+        User userToUpdate = users.get(0);
+        userToUpdate.setLastName(newLastName);
+        dao.saveOrUpdate(userToUpdate);
+        users = dao.getByUserName("stantheman");
+        User updatedUser = users.get(0);
+        assertEquals(newLastName, updatedUser.getLastName());
+    }
 }
