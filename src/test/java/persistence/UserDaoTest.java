@@ -26,4 +26,11 @@ class UserDaoTest {
         List<User> users = dao.getAllUsers();
         assertEquals(4, users.size());
     }
+
+    @Test
+    void getUserByUserName() {
+        List<User> users = dao.getByUserName("kangelo");
+        assertEquals(1, users.size());
+        assertEquals("Angelo", users.get(0).getLastName());
+    }
 }
