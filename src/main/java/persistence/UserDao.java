@@ -68,5 +68,12 @@ public class UserDao {
         session.close();
     }
 
+    public void delete(User user) {
 
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(user);
+        transaction.commit();
+        session.close();
+    }
 }

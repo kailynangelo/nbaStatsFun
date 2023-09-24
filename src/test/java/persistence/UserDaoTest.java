@@ -57,4 +57,14 @@ class UserDaoTest {
         User updatedUser = users.get(0);
         assertEquals(newLastName, updatedUser.getLastName());
     }
+
+    @Test
+    void deleteSuccess() {
+
+        List<User> users = dao.getAllUsers();
+        int initialSize = users.size();
+        dao.delete(users.get(0));
+        users = dao.getAllUsers();
+        assertEquals(initialSize - 1, users.size());
+    }
 }
