@@ -11,10 +11,9 @@ players that are interested in. It will also provide the user a way to discover
 random stats when something piques their curiosity.
 
 
-## User Stories
+## Planning and Tracking
 
-## Project Plan
-
-## Screen Design
-
-## Weekly Recaps
+* [User Stories](DesignDocuments/UserStories.md)
+* [Screen Design](DesignDocuments/ScreenDesign.md)
+* [Project Plan](ProjectPlan.md)
+* [Weekly Recaps](WeeklyRecap.md)
