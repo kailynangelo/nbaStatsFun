@@ -23,3 +23,8 @@
 * Problem Statement, User Stories, Time tracker
 * Create Project Plan
 * Work on screen designs
+
+9/26/23 (0.75 hours)
+
+* screen design - rough draft (figuring out figma again!)
+* submit for checkpoint 1 ? 
