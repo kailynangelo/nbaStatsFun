@@ -24,7 +24,8 @@
 * Create Project Plan
 * Work on screen designs
 
-9/26/23 (0.75 hours)
+9/26/23 (1 hour)
 
 * screen design - rough draft (figuring out figma again!)
 * submit for checkpoint 1 ? 
+* week 5 overview and start readings
