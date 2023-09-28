@@ -29,3 +29,10 @@
 * screen design - rough draft (figuring out figma again!)
 * submit for checkpoint 1 ? 
 * week 5 overview and start readings
+
+9/27/23 (3.5 hours)
+* watched week 5 videos, followed along with demo
+* resolved issue with test_sample db user table
+* chose professional development project topic + sign up
+* watched learning tracker video and reviewed learning tracker
+
