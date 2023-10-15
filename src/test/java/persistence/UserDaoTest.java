@@ -55,13 +55,14 @@ class UserDaoTest {
      */
     @Test
     void insertSuccess() {
-        User user = new User("Florence", "Jenkins", "flojenk", "student");
-        int id = dao.insert(user);
+        User newUser = new User("Florence", "Jenkins", "flojenk", "student");
+        int id = dao.insert(newUser);
         assertNotEquals(0, id);
         List<User> users = dao.getAllUsers();
         assertEquals(5, users.size());
-        List<User> userbyname = dao.getByUserName("flojenk");
-        assertEquals("Florence", userbyname.get(0).getFirstName());
+        List<User> userByName = dao.getByUserName("flojenk");
+        User insertedUser = userByName.get(0);
+        assertEquals(newUser, insertedUser);
     }
 
     /**
