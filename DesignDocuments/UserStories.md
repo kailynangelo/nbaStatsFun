@@ -24,7 +24,7 @@ As a user I want to lookup statistics by category so that I can find miscellaneo
 ### Add favorite team*
 As a user I want to add a team as my favorite so that I can find info on them easily.
 
-### Remove favorite team
+### Remove favorite team*
 As a user I want to remove a team as my favorite so that I am no longer following them.
 
 ### League Scoreboard
