@@ -3,6 +3,7 @@ package entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Object to store user information.
@@ -135,11 +136,6 @@ public class User {
         this.password = password;
     }
 
-    /**
-     * Creates a string with user info
-     *
-     * @return a string with information about the user
-     */
     @Override
     public String toString() {
         return "User{" +
@@ -148,5 +144,22 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", id='" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(userName, user.userName) &&
+                Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, userName, password);
     }
 }
