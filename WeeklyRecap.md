@@ -85,6 +85,9 @@ Will add if I have the time, and remember! Trying to better the past week or two
 * got dbs setup on new computer and implemented logger in indie proj/removed a couple printlns and printStackTrace()s
 * updated weekly recap/time tracker.
 * reviewed db structure and previous exercises, projects, course work
+* trying to plan/prioritize remainder of semester...
+* start set up dao for free nba api and working on unit tests...wondering if i should use mockaroo or something else
+ 
   
 
  
