@@ -88,6 +88,10 @@ Will add if I have the time, and remember! Trying to better the past week or two
 * trying to plan/prioritize remainder of semester...
 * start set up dao for free nba api and working on unit tests...wondering if i should use mockaroo or something else
  
+12/1/23
+* deployed indie project to aws and set up db config, made dev branch to work on new features
+* more planning/considering how to prioritize tasks the remainder of the semester
+* next steps: set up cognito with indie proj
   
 
  
