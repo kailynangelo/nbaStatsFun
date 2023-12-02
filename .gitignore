@@ -90,3 +90,6 @@ fabric.properties
 
 #misc
 .properties
+/src/main/resources/cognito.properties
+/src/main/resources/log4j2.properties
+/src/test/resources/database.properties
