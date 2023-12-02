@@ -7,5 +7,10 @@
 <a href = "logIn">Log in</a>
 <h3>Welcome ${userName}</h3>
 <p>This page is currently under construction.</p>
+<br>
+<form action="showUsers">
+    <button type="submit" name="submit" value="viewAll">View Current Users</button>
+</form>
+
 </body>
 </html>
