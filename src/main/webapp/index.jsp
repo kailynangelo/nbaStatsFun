@@ -1,8 +1,11 @@
 <%@include file="head.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <body>
 <h1>NBA Stats Fun</h1>
-<p>Welcome! This page is currently under construction.</p>
+
 <a href = "logIn">Log in</a>
+<h3>Welcome ${userName}</h3>
+<p>This page is currently under construction.</p>
 </body>
 </html>
