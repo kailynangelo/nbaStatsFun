@@ -95,3 +95,6 @@ fabric.properties
 /src/test/resources/database.properties
 /src/main/.ebextensions/
 /src/main/.platform/
+/src/main/.platform/httpd/conf.d/ssl.conf
+/src/main/.ebextensions/https-instance.config
+/src/main/resources/hibernate.cfg.xml
