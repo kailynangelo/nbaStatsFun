@@ -8,6 +8,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import auth.*;
 import entity.User;
+import persistence.UserDao;
 import util.PropertiesLoader;
 import org.apache.commons.io.*;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +38,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -180,7 +182,28 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // TODO decide what you want to do with the info!
         // for now, I'm just returning username for display back to the browser
+        // TODO refactor this next bit
+        // check db for user via dao
+        String userToCheck = userName.toUpperCase();
+        UserDao dao = new UserDao();
+        User user = null;
+        List<User> users = dao.getByUserName(userToCheck);
+        // if not exists, get first and last name too and add to db
+        if (users.isEmpty()) {
+            //username = userToCheck
+            logger.debug("***USER NOT FOUND IN DB - username: " + userToCheck);
+            String firstName = jwt.getClaim("given_name").asString();
+            String lastName = jwt.getClaim("family_name").asString();
+            logger.debug("USER TO BE ADDED: " + firstName + " " + lastName);
+            user = new User(firstName, lastName, userToCheck, "");
+            int id = dao.insert(user);
+            if (id == 0) logger.debug("ERROR ADDING USER");
+            else logger.debug("User was added with id: " + id);
 
+        }
+        // add user to session
+
+        //
         return userName;
     }
 
