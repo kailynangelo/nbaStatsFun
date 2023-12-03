@@ -199,7 +199,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             int id = dao.insert(user);
             if (id == 0) logger.debug("ERROR ADDING USER");
             else logger.debug("User was added with id: " + id);
-
+        }
+        else {
+            logger.debug("USER FOUND IN DB.");
+            user = users.get(0);
+            logger.debug(user.toString());
         }
         // add user to session
 
