@@ -1,6 +1,8 @@
 package persistence;
 
 import entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import test.util.Database;
@@ -13,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * The User dao test.
  */
 class UserDaoTest {
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * The Dao.
