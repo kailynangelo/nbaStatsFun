@@ -205,7 +205,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             user = users.get(0);
             logger.debug(user.toString());
         }
-        // add user to session
+        //TODO add user to session
 
         //
         return userName;
