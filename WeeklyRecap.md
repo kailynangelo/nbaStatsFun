@@ -93,6 +93,9 @@ Will add if I have the time, and remember! Trying to better the past week or two
 * more planning/considering how to prioritize tasks the remainder of the semester
 * next steps: set up cognito with indie proj
   
-
+12/2/23 
+* spent the day working through getting cognito set up and integrated with my web app and db. had to redo everything after deploying the integrated app to beanstalk because it was erroring when trying to switch from nginx to apache so i just made a new environment and everything. i did this after a long day and fumbled a bit the first try (i think i just forgot to open up port 3306 for the db and my local machine...) but everything worked out on the third go around! web app is deployed and i have data from db displaying to a show users page. and auth/login with cognito seems to be working on the deployed version too!
+* the main thing left to do with cognito is integrate it with the my user db, but i have a plan and think i can get things sorted out
+* utilized (most of the time) an auth branch while implementing login functionality. was good about using it and merging with main earlier in the day. i made a few changes on main later on but they were pretty minor overall i think 
  
 
