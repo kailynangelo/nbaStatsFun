@@ -103,3 +103,11 @@ Will add if I have the time, and remember! Trying to better the past week or two
  * had some issues with log4j again so spent sometime with that for a bit at the start but got it working again
  * note - woke up feeling really sick, thankfully got the above all working, now going to rest a bit 
 
+12/4/23
+* reviewed projects, learning tracker, notes from previous week or so
+* met with Paula to discuss indie project and planning
+  * add teams table for users to track favorite teams
+  * user -> user_team <- team (won't need entity for join table) (fetch type eager, not lazy)
+  * [https://mkyong.com/hibernate/hibernate-many-to-many-relationship-example-annotation/]()
+* review above resource, mocked up some db designs, will start implementing tomorrow
+  * also, reminder to add User to session
