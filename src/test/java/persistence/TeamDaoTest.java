@@ -38,6 +38,7 @@ class TeamDaoTest {
     @Test
     void getAllTeams() {
         List<Team> teams = dao.getAllTeams();
+        logger.debug(teams.toString());
         assertEquals(30, teams.size());
     }
 
@@ -48,6 +49,7 @@ class TeamDaoTest {
     void getTeamByTeamName() {
         String expectedTeam = "Milwaukee Bucks";
         List<Team> teams = dao.getByTeamName("Bucks");
+        logger.debug(teams.get(0).toString());
         assertEquals(1, teams.size());
         assertEquals(expectedTeam, teams.get(0).getFullName());
     }
