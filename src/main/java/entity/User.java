@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -167,7 +168,9 @@ public class User implements Serializable {
     }
 
     public void removeTeamFromFavorites(Team team) {
-
+        if (favoriteTeams.remove(team)) {
+            team.getUsers().remove(this);
+        }
     }
 
     @Override

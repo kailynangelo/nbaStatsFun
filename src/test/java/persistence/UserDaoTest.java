@@ -110,6 +110,35 @@ class UserDaoTest {
     }
 
     /**
+     * Verifies user can add favorite team
+     */
+    @Test
+    void removeFavoriteTeamForUser() {
+        TeamDao teamDao = new TeamDao();
+        Team teamToAdd = teamDao.getByTeamName("Bucks").get(0);
+        logger.debug(teamToAdd);
+
+        User user = dao.getByUserName("anniemo").get(0);
+        logger.debug(user);
+
+        user.addTeamToFavorites(teamToAdd);
+        logger.debug(user);
+
+        dao.saveOrUpdate(user);
+
+        User updatedUser = dao.getByUserName("anniemo").get(0);
+        logger.debug(updatedUser);
+
+        updatedUser.removeTeamFromFavorites(teamToAdd);
+        logger.debug(updatedUser);
+        dao.saveOrUpdate(updatedUser);
+        User updatedUser2 = dao.getByUserName("anniemo").get(0);
+        logger.debug(updatedUser2);
+
+        assertEquals(user, updatedUser);
+    }
+
+    /**
      * Verifies delete success.
      */
     @Test
