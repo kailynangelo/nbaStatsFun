@@ -167,11 +167,11 @@ public class User implements Serializable {
         team.getUsers().add(this);
     }
 
-    public void removeTeamFromFavorites(Team team) {
-        if (favoriteTeams.remove(team)) {
-            team.getUsers().remove(this);
-        }
-    }
+//    public void removeTeamFromFavorites(Team team) {
+//        if (favoriteTeams.remove(team)) {
+//            team.getUsers().remove(this);
+//        }
+//    }
 
     @Override
     public String toString() {
