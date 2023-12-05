@@ -3,14 +3,17 @@ package entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Object to store Team info.
  */
 @Entity(name = "Team")
 @Table(name = "team")
-public class Team {
+public class Team implements Serializable {
 
     //@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     //@GenericGenerator(name = "native", strategy = "native")
@@ -29,6 +32,9 @@ public class Team {
     private String division;
     @Column(name = "full_name")
     private String fullName;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "favoriteTeams")
+    private Set<User> users = new HashSet<User>(0);
 
     /**
      * Instantiates a new Team.
@@ -160,6 +166,15 @@ public class Team {
      */
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override

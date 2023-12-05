@@ -3,14 +3,17 @@ package entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Object to store user information.
  */
 @Entity(name = "User")
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -25,10 +28,22 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_favorite_team", joinColumns = {
+            @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "team_id") })
+    private Set<Team> favoriteTeams = new HashSet<Team>(0);
+
     /**
      * Instantiates a new User.
      */
     public User() {
+    }
+
+    public User(String firstName, String lastName, String userName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
     }
 
     /**
@@ -45,6 +60,7 @@ public class User {
         this.userName = userName;
         this.password = password;
     }
+
 
     /**
      * Gets id.
@@ -136,12 +152,22 @@ public class User {
         this.password = password;
     }
 
+
+    public Set<Team> getTeams() {
+        return favoriteTeams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.favoriteTeams = teams;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
+                ", favoriteTeams='" + favoriteTeams + '\'' +
                 ", id='" + id +
                 '}';
     }
