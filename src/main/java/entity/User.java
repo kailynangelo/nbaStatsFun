@@ -29,9 +29,9 @@ public class User implements Serializable {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_favorite_team", joinColumns = {
-            @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "team_id") })
+    @JoinTable(name = "user_favorite_team",
+                joinColumns =  @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "team_id"))
     private Set<Team> favoriteTeams = new HashSet<Team>(0);
 
     /**
@@ -159,6 +159,15 @@ public class User implements Serializable {
 
     public void setTeams(Set<Team> teams) {
         this.favoriteTeams = teams;
+    }
+
+    public void addTeamToFavorites(Team team) {
+        favoriteTeams.add(team);
+        team.getUsers().add(this);
+    }
+
+    public void removeTeamFromFavorites(Team team) {
+
     }
 
     @Override

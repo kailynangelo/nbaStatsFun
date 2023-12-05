@@ -177,6 +177,10 @@ public class Team implements Serializable {
         this.users = users;
     }
 
+    public void addUser(User user) {
+        users.add(user);
+    }
+
     @Override
     public String toString() {
         return "Team{" +

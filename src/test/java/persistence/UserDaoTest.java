@@ -1,5 +1,6 @@
 package persistence;
 
+import entity.Team;
 import entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import test.util.Database;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,7 +56,6 @@ class UserDaoTest {
         assertEquals("Angelo", users.get(0).getLastName());
     }
 
-
     /**
      * Verifies insert success.
      */
@@ -83,6 +84,29 @@ class UserDaoTest {
         users = dao.getByUserName("stantheman");
         User updatedUser = users.get(0);
         assertEquals(userToUpdate, updatedUser);
+    }
+
+    /**
+     * Verifies user can add favorite team
+     */
+    @Test
+    void addFavoriteTeamForUser() {
+        TeamDao teamDao = new TeamDao();
+        Team teamToAdd = teamDao.getByTeamName("Bucks").get(0);
+        logger.debug(teamToAdd);
+
+        User user = dao.getByUserName("anniemo").get(0);
+        logger.debug(user);
+
+        user.addTeamToFavorites(teamToAdd);
+        logger.debug(user);
+
+        dao.saveOrUpdate(user);
+
+        User updatedUser = dao.getByUserName("anniemo").get(0);
+        logger.debug(updatedUser);
+
+        assertEquals(user, updatedUser);
     }
 
     /**
