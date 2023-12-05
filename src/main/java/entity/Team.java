@@ -12,9 +12,9 @@ import java.util.Objects;
 @Table(name = "team")
 public class Team {
 
+    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    //@GenericGenerator(name = "native", strategy = "native")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
     @Column(name = "team_name")

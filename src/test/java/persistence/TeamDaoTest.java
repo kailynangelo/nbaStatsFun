@@ -46,10 +46,12 @@ class TeamDaoTest {
      */
     @Test
     void getTeamByTeamName() {
+        String expectedTeam = "Milwaukee Bucks";
         List<Team> teams = dao.getByTeamName("Bucks");
         assertEquals(1, teams.size());
-        assertEquals("???", teams.get(0).getTeamName());
+        assertEquals(expectedTeam, teams.get(0).getFullName());
     }
+
 
 //    @Test
 //    void insert() {

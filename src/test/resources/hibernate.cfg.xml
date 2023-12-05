@@ -18,7 +18,7 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <mapping class="entity.User"/>
-
+        <mapping class="entity.Team"/>
     </session-factory>
 
 </hibernate-configuration>
