@@ -8,12 +8,19 @@
         <thead>
             <th>Name</th>
             <th>Username</th>
+            <th>Favorite Teams</th>
         </thead>
         <tbody>
         <c:forEach var="user" items="${users}">
             <tr>
                 <td>${user.firstName} ${user.lastName}</td>
                 <td>${user.userName}</td>
+<%--                <td>${user.favoriteTeams}</td>--%>
+                <td><ul>
+                    <c:forEach var="team" items="${user.favoriteTeams}">
+                        <li>${team.fullName}</li>
+                    </c:forEach>
+                </ul></td>
             </tr>
         </c:forEach>
         </tbody>

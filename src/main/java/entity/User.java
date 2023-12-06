@@ -154,11 +154,11 @@ public class User implements Serializable {
     }
 
 
-    public Set<Team> getTeams() {
+    public Set<Team> getFavoriteTeams() {
         return favoriteTeams;
     }
 
-    public void setTeams(Set<Team> teams) {
+    public void setFavoriteTeams(Set<Team> teams) {
         this.favoriteTeams = teams;
     }
 
