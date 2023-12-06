@@ -111,3 +111,15 @@ Will add if I have the time, and remember! Trying to better the past week or two
   * [https://mkyong.com/hibernate/hibernate-many-to-many-relationship-example-annotation/]()
 * review above resource, mocked up some db designs, will start implementing tomorrow
   * also, reminder to add User to session
+ 
+12/5/23 (1:?? - 6:15 pm)
+* focus today was on hibernate and creating and implenenting the user-team join table. first had to create the teams table, and generated a sqldump for that.
+* revisted a lot of Hibernate material along the way to refamiliarize myself with it. it's pretty cool!
+* at the point where i can add users favorite teams, unit testing for that went well but removing favorite teams ended up removing the team from the team table too.. so I'll have to revisit that one. Made it so the view all users jsp also shows each users favorite teams in an unordered list
+* forgot to use a different branch and worked on main...whoops. caught myself maybe halfway in, but was right in the middle of something and forgot again. Will remember to do this again next time. Would like to clean things up first though - make sure main is in a good spot (i think it is but i'm tired so i will double check tomorrow) and then move to my dev branch.
+* thoughts on what to do next:
+  * still need to add User to session!
+  * create user homepage (vs general homepage)
+  * add way for user to add teams to favorites
+  * and then....add teams page, and "team" page
+  * ....to be continued
