@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -81,8 +82,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
-        String userName = null;
-        //User user = null;
+        //String userName = null;
+        User user = null;
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
@@ -90,9 +91,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
-                //user = validate(tokenResponse);
-                req.setAttribute("userName", userName);
+                //userName = validate(tokenResponse);
+                user = validate(tokenResponse);
+                req.setAttribute("userName", user.getUserName());
+
+                HttpSession session = req.getSession();
+                session.setAttribute("currentUser", user);
+
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
                 //TODO forward to an error page
@@ -138,7 +143,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private User validate(TokenResponse tokenResponse) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -205,10 +210,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             user = users.get(0);
             logger.debug(user.toString());
         }
-        //TODO add user to session
-
-        //
-        return userName;
+        return user;
     }
 
     /** Create the auth url and use it to build the request.
