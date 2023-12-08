@@ -5,7 +5,7 @@
 <h1>NBA Stats Fun</h1>
 
 <a href = "logIn">Log in</a>
-<%--<h3>Welcome ${userName}</h3>--%>
+<h3>Welcome ${userName}</h3>
 <p>This page is currently under construction.</p>
 <c:if test="${not empty currentUser}" >
     <p>You are logged in.</p>
