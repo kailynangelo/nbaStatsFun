@@ -11,6 +11,7 @@
     <p>You are logged in.</p>
 </c:if>
 <br>
+<p><a href="${pageContext.request.contextPath}/teams">Go to Teams Page</a></p>
 <form action="showUsers">
     <button type="submit" name="submit" value="viewAll">View Current Users</button>
 </form>
