@@ -12,7 +12,7 @@
     <tbody>
     <c:forEach var="team" items="${teams}">
         <tr>
-            <td>${team.fullName}</td>
+            <td><a href="${pageContext.request.contextPath}/viewTeam?teamName=${team.teamName}">${team.fullName}</a></td>
             <td>${team.city}, ${team.state}</td>
         </tr>
     </c:forEach>

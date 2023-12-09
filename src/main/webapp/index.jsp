@@ -9,6 +9,9 @@
 <p>This page is currently under construction.</p>
 <c:if test="${not empty currentUser}" >
     <p>You are logged in.</p>
+<%--    <c:forEach var="team" items="${currentUser.favoriteTeams}">--%>
+<%--        --%>
+<%--    </c:forEach>--%>
 </c:if>
 <br>
 <p><a href="${pageContext.request.contextPath}/teams">Go to Teams Page</a></p>
