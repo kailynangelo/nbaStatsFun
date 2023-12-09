@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Team;
+import entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import persistence.TeamDao;
@@ -20,10 +21,10 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        urlPatterns = {"/viewTeam"}
+        urlPatterns = {"/updateFavorites"}
 )
 
-public class ViewTeam extends HttpServlet {
+public class UpdateFavorites extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -31,20 +32,15 @@ public class ViewTeam extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         loadTeamsToSession(req);
+        logger.debug("forwarding on to myTeams.jsp");
 
-        String teamName = req.getParameter("teamName");
-        HttpSession session = req.getSession();
-
-        if (teamName != null && !teamName.isEmpty()) {
-            TeamDao dao = new TeamDao();
-            req.setAttribute("team", dao.getByTeamName(teamName).get(0));
-            logger.debug("team added to the request." + dao.getByTeamName(teamName));
-        }
-        else {
-            logger.debug("teamName was empty...no team set");
-        }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/team.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 
     protected void loadTeamsToSession(HttpServletRequest req) {

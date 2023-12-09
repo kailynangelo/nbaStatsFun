@@ -27,6 +27,7 @@ public class AllTeams extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        //TODO refactor loading of teams to session... used in Update favorites, View team as well
         HttpSession session = req.getSession();
         if (session.getAttribute("teams") == null) {
             TeamDao dao = new TeamDao();
