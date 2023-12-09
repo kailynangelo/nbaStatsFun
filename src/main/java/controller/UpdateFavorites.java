@@ -41,6 +41,17 @@ public class UpdateFavorites extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String actionType = req.getParameter("actionType");
+        logger.debug("Request to  " + actionType + " team");
+
+        String teamToAddName = req.getParameter("teamToAdd");
+        logger.debug("doPost to add team: " + teamToAddName);
+
+        String teamToRemoveName = req.getParameter("teamToRemove");
+        logger.debug("doPost to remove team: " + teamToRemoveName);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
+        dispatcher.forward(req, resp);
     }
 
     protected void loadTeamsToSession(HttpServletRequest req) {

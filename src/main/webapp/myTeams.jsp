@@ -9,14 +9,29 @@
     <h1>Manage your favorite teams</h1>
     <br>
     <h2>${currentUser.userName}'s favorite teams</h2>
-    <p>
     <ul>
       <c:forEach var="team" items="${currentUser.favoriteTeams}">
-        <li>${team.fullName}</li>
+        <li>
+            ${team.fullName}
+            <form id="removeTeam" action="updateFavorites" method="post">
+                <input type="hidden" name="teamToRemove" value="${team.teamName}" />
+                <button type="submit" name="actionType" value="remove">remove team</button>
+            </form>
+        </li>
       </c:forEach>
     </ul>
-    <a>add team</a>
-    </p>
+
+    <form id="addTeam" action="updateFavorites" method="post">
+        <label for="teamToAdd">Add a team:</label>
+        <select name="teamToAdd" id="teamToAdd">
+            <c:forEach var="team" items="${teams}">
+                <option value="${team.teamName}">${team.fullName}</option>
+            </c:forEach>
+        </select>
+        <button type="submit" name="actionType" value="add">add team</button>
+    </form>
+
+
 
     <p><a href="index.jsp">Return to Home</a></p>
 </body>
