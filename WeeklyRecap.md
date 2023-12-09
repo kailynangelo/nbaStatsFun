@@ -125,12 +125,14 @@ Will add if I have the time, and remember! Trying to better the past week or two
   * ....to be continued
 
 12/7/23
+
 Things are going well with the indie project. I'm extra happy because the past couple days I wasn't able to do much and was worried about picking back up. Having next steps noted above in the entry from 12/5 was definitely helpful :) Spent a couple hours on various things for the course but mainly continued to work on indie project.
 * User is now added to session upon login.
 * Once a user is logged in, additional info appears on homepage (right now just that they're logged in)
 * Set up teams page and controller and this is successfully populating from db and linked to homepage
 * These changes are deployed to aws.
 * I was occasionally running into an issue with auth where token was not able to be used before (now) ..seems like it maybe has something to do with the time on the server or in the db or something being wrong/needing set? only happens sometimes, and seems to just be when deployed locally via tomcat.
+
 Next steps:
 * user homepage -or- update homepage to be user specific once logged in
 * "team" page
