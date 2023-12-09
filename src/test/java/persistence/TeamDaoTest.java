@@ -55,15 +55,18 @@ class TeamDaoTest {
     }
 
 
-//    @Test
-//    void insert() {
-//    }
-//
-//    @Test
-//    void saveOrUpdate() {
-//    }
-//
-//    @Test
-//    void delete() {
-//    }
+    @Test
+    void insert() {
+        //TODO
+    }
+
+    @Test
+    void saveOrUpdate() {
+        //TODO
+    }
+
+    @Test
+    void delete() {
+        //TODO
+    }
 }

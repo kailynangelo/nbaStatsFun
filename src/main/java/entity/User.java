@@ -1,5 +1,7 @@
 package entity;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -167,11 +169,20 @@ public class User implements Serializable {
         team.getUsers().add(this);
     }
 
-//    public void removeTeamFromFavorites(Team team) {
-//        if (favoriteTeams.remove(team)) {
-//            team.getUsers().remove(this);
-//        }
-//    }
+    public void removeTeamFromFavorites(Team team) {
+//        System.out.println("**********************************");
+//        System.out.println(team);
+//        System.out.println(favoriteTeams);
+//        System.out.println(team.getUsers());
+//        System.out.println("**********************************");
+        favoriteTeams.remove(team);
+        team.getUsers().remove(this);
+//        System.out.println("**********************************");
+//        System.out.println(team);
+//        System.out.println(favoriteTeams);
+//        System.out.println(team.getUsers());
+//        System.out.println("**********************************");
+    }
 
     @Override
     public String toString() {

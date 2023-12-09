@@ -112,26 +112,37 @@ class UserDaoTest {
     /**
      * Verifies user can remove team from favorites
      */
-//    @Test
-//    void removeFavoriteTeamForUser() {
-//        TeamDao teamDao = new TeamDao();
-//        Team teamToAdd = teamDao.getByTeamName("Bucks").get(0);
-//
-//        User user = dao.getByUserName("anniemo").get(0);
-//        user.addTeamToFavorites(teamToAdd);
-//        dao.saveOrUpdate(user);
-//
-//        User updatedUser = dao.getByUserName("anniemo").get(0);
-//        logger.debug(updatedUser);
-//
-//        updatedUser.removeTeamFromFavorites(teamToAdd);
-//        logger.debug(updatedUser);
-//        dao.saveOrUpdate(updatedUser);
-//        User updatedUser2 = dao.getByUserName("anniemo").get(0);
-//        logger.debug(updatedUser2);
-//
-//        assertEquals(user, updatedUser);
-//    }
+    @Test
+    void removeFavoriteTeamForUser() {
+        TeamDao teamDao = new TeamDao();
+        Team teamToAdd = teamDao.getByTeamName("Bucks").get(0);
+        Team teamToRemove = teamDao.getByTeamName("Celtics").get(0);
+
+        User user = dao.getByUserName("anniemo").get(0);
+        logger.debug("USER:  " + user);
+        logger.debug("TEAM TO REMOVE:  " + teamToRemove);
+
+        user.addTeamToFavorites(teamToAdd);
+        user.addTeamToFavorites(teamToRemove);
+        dao.saveOrUpdate(user);
+
+        User updatedUser = dao.getByUserName("anniemo").get(0);
+        Team updatedTeam = teamDao.getByTeamName(teamToRemove.getTeamName()).get(0);
+        updatedUser.removeTeamFromFavorites(updatedTeam);
+        logger.debug(updatedUser);
+        logger.debug(updatedTeam);
+
+        dao.saveOrUpdate(updatedUser);
+
+        User updatedUser2 = dao.getByUserName("anniemo").get(0);
+        logger.debug(updatedUser2);
+        Team updatedTeam2 = teamDao.getByTeamName(teamToRemove.getTeamName()).get(0);
+        logger.debug(updatedTeam2);
+
+        assertEquals(user, updatedUser2);
+        assertEquals(1, updatedUser2.getFavoriteTeams().size());
+        assertEquals(30, teamDao.getAllTeams().size());
+    }
 
     /**
      * Verifies delete success.
