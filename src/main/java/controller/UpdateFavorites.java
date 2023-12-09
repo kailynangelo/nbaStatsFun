@@ -41,18 +41,60 @@ public class UpdateFavorites extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        HttpSession session = req.getSession();
+        User currentUser = (User) session.getAttribute("currentUser");
+        String userName = currentUser.getUserName();
+
         String actionType = req.getParameter("actionType");
-        logger.debug("Request to  " + actionType + " team");
+        logger.debug("Request to  " + actionType + " team to/from " + userName + "'s favorites");
 
-        String teamToAddName = req.getParameter("teamToAdd");
-        logger.debug("doPost to add team: " + teamToAddName);
+        if (actionType.equals("add")) {
+            String teamToAddName = req.getParameter("teamToAdd");
+            logger.debug("doPost to add team: " + teamToAddName);
+            User updatedUser = addTeamToFavorites(teamToAddName, userName);
+            session.setAttribute("currentUser", updatedUser);
+            logger.debug("*** UPDATED USER: " + updatedUser);
+        }
+        else if (actionType.equals("remove")) {
+            String teamToRemoveName = req.getParameter("teamToRemove");
+            logger.debug("doPost to remove team: " + teamToRemoveName);
+            removeTeamFromFavorites(teamToRemoveName);
+        }
+        else {
+            logger.error("something went wrong, neither add nor remove team was requested...");
+        }
 
-        String teamToRemoveName = req.getParameter("teamToRemove");
-        logger.debug("doPost to remove team: " + teamToRemoveName);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
         dispatcher.forward(req, resp);
     }
+
+    private void removeTeamFromFavorites(String teamName) {
+        logger.debug("removing team from favorites: " + teamName);
+
+    }
+
+    private User addTeamToFavorites(String teamName, String userName) {
+
+        logger.debug("adding team to " + userName + "'s favorites: " + teamName);
+
+        TeamDao teamDao = new TeamDao();
+        Team teamToAdd = teamDao.getByTeamName(teamName).get(0);
+        logger.debug("team to add: " + teamToAdd);
+
+        UserDao userDao = new UserDao();
+        User user = userDao.getByUserName(userName).get(0);
+        logger.debug("user to add to: " + user);
+
+        user.addTeamToFavorites(teamToAdd);
+
+        userDao.saveOrUpdate(user);
+
+        User updatedUser = userDao.getByUserName(userName).get(0);
+        logger.debug("Updated user [IN ADD]: " + updatedUser);
+        return updatedUser;
+    }
+
 
     protected void loadTeamsToSession(HttpServletRequest req) {
 
