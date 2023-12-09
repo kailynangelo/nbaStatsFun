@@ -109,21 +109,16 @@ class UserDaoTest {
         assertEquals(user, updatedUser);
     }
 
-//    /**
-//     * Verifies user can add favorite team
-//     */
+    /**
+     * Verifies user can remove team from favorites
+     */
 //    @Test
 //    void removeFavoriteTeamForUser() {
 //        TeamDao teamDao = new TeamDao();
 //        Team teamToAdd = teamDao.getByTeamName("Bucks").get(0);
-//        logger.debug(teamToAdd);
 //
 //        User user = dao.getByUserName("anniemo").get(0);
-//        logger.debug(user);
-//
 //        user.addTeamToFavorites(teamToAdd);
-//        logger.debug(user);
-//
 //        dao.saveOrUpdate(user);
 //
 //        User updatedUser = dao.getByUserName("anniemo").get(0);

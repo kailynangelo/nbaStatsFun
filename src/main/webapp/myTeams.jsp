@@ -13,10 +13,10 @@
       <c:forEach var="team" items="${currentUser.favoriteTeams}">
         <li>
             ${team.fullName}
-            <form id="removeTeam" action="updateFavorites" method="post">
-                <input type="hidden" name="teamToRemove" value="${team.teamName}" />
-                <button type="submit" name="actionType" value="remove">remove team</button>
-            </form>
+<%--            <form id="removeTeam" action="updateFavorites" method="post">--%>
+<%--                <input type="hidden" name="teamToRemove" value="${team.teamName}" />--%>
+<%--                <button type="submit" name="actionType" value="remove">remove team</button>--%>
+<%--            </form>--%>
         </li>
       </c:forEach>
     </ul>
