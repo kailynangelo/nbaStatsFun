@@ -5,9 +5,8 @@
 <h1>NBA Stats Fun</h1>
 <br>
 <h3>Welcome</h3>
-<p><a href = "logIn">Log in</a></p>
 <c:if test="${empty currentUser}" >
-    <p>Log in to view and edit your saved teams.</p>
+    <p><a href = "logIn">Log in</a> to view and edit your saved teams.</p>
 </c:if>
 <c:if test="${not empty currentUser}" >
     <p>You are logged in as ${currentUser.userName}</p>
@@ -28,7 +27,7 @@
     </table>
 </c:if>
 <br>
-<p><a href="${pageContext.request.contextPath}/teams">Go to Teams Page</a></p>
+<p><a href="${pageContext.request.contextPath}/teams">View All Teams</a></p>
 <form action="showUsers">
     <button type="submit" name="submit" value="viewAll">View Current Users</button>
 </form>
