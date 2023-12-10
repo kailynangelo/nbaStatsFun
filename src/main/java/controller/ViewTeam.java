@@ -1,8 +1,10 @@
 package controller;
 
 import entity.Team;
+import mockarooAPI.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import persistence.MockarooPlayerDao;
 import persistence.TeamDao;
 import persistence.UserDao;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * A simple servlet to show users in db
@@ -35,15 +38,24 @@ public class ViewTeam extends HttpServlet {
         String teamName = req.getParameter("teamName");
         HttpSession session = req.getSession();
 
+        RequestDispatcher dispatcher = null;
         if (teamName != null && !teamName.isEmpty()) {
             TeamDao dao = new TeamDao();
-            req.setAttribute("team", dao.getByTeamName(teamName).get(0));
-            logger.debug("team added to the request." + dao.getByTeamName(teamName));
+            Team team = dao.getByTeamName(teamName).get(0);
+            req.setAttribute("team", team);
+            logger.debug("team added to the request." + team);
+
+            MockarooPlayerDao playerDao = new MockarooPlayerDao();
+            List<Player> players = playerDao.getPlayersByTeam(team.getId());
+            req.setAttribute("players", players);
+            logger.debug("players on team: " + players);
+            dispatcher = req.getRequestDispatcher("/team.jsp");
         }
         else {
             logger.debug("teamName was empty...no team set");
+            dispatcher = req.getRequestDispatcher("/error.jsp");
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/team.jsp");
+
         dispatcher.forward(req, resp);
     }
 
