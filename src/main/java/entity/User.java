@@ -170,18 +170,8 @@ public class User implements Serializable {
     }
 
     public void removeTeamFromFavorites(Team team) {
-//        System.out.println("**********************************");
-//        System.out.println(team);
-//        System.out.println(favoriteTeams);
-//        System.out.println(team.getUsers());
-//        System.out.println("**********************************");
         favoriteTeams.remove(team);
         team.getUsers().remove(this);
-//        System.out.println("**********************************");
-//        System.out.println(team);
-//        System.out.println(favoriteTeams);
-//        System.out.println(team.getUsers());
-//        System.out.println("**********************************");
     }
 
     @Override
