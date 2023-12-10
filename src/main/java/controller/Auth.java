@@ -47,7 +47,6 @@ import java.util.stream.Collectors;
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
@@ -82,33 +81,30 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
-        //String userName = null;
         User user = null;
 
+        RequestDispatcher dispatcher = null;
         if (authCode == null) {
-            //TODO forward to an error page or back to the login
+            dispatcher = req.getRequestDispatcher("error.jsp");
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                //userName = validate(tokenResponse);
                 user = validate(tokenResponse);
                 req.setAttribute("userName", user.getUserName());
 
                 HttpSession session = req.getSession();
                 session.setAttribute("currentUser", user);
-
+                dispatcher = req.getRequestDispatcher("index.jsp");
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                //TODO forward to an error page
+                dispatcher = req.getRequestDispatcher("error.jsp");
             } catch (InterruptedException e) {
                 logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                //TODO forward to an error page
+                dispatcher = req.getRequestDispatcher("error.jsp");
             }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req, resp);
-
     }
 
     /**
@@ -124,7 +120,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
 
-
         logger.debug("Response headers: " + response.headers().toString());
         logger.debug("Response body: " + response.body().toString());
 
@@ -133,7 +128,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("Id token: " + tokenResponse.getIdToken());
 
         return tokenResponse;
-
     }
 
     /**
@@ -156,7 +150,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
+        // todo the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
         try {
@@ -182,12 +176,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
         logger.debug("here's the username: " + userName);
-
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
-        // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
-        // TODO refactor this next bit
+
         // check db for user via dao
         String userToCheck = userName.toUpperCase();
         UserDao dao = new UserDao();
