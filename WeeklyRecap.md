@@ -98,12 +98,14 @@ Will add if I have the time, and remember! Trying to better the past week or two
 * the main thing left to do with cognito is integrate it with the my user db, but i have a plan and think i can get things sorted out
 * utilized (most of the time) an auth branch while implementing login functionality. was good about using it and merging with main earlier in the day. i made a few changes on main later on but they were pretty minor overall i think 
 
- 12/3/23
+#### 12/3/23
+
  * integrated cognito authentication and user database and its working (log in existing user, new user sign up, etc.)
  * had some issues with log4j again so spent sometime with that for a bit at the start but got it working again
  * note - woke up feeling really sick, thankfully got the above all working, now going to rest a bit 
 
-12/4/23
+#### 12/4/23
+
 * reviewed projects, learning tracker, notes from previous week or so
 * met with Paula to discuss indie project and planning
   * add teams table for users to track favorite teams
@@ -112,7 +114,8 @@ Will add if I have the time, and remember! Trying to better the past week or two
 * review above resource, mocked up some db designs, will start implementing tomorrow
   * also, reminder to add User to session
  
-12/5/23 (1:?? - 6:15 pm)
+#### 12/5/23 (1:?? - 6:15 pm)
+
 * focus today was on hibernate and creating and implenenting the user-team join table. first had to create the teams table, and generated a sqldump for that.
 * revisted a lot of Hibernate material along the way to refamiliarize myself with it. it's pretty cool!
 * at the point where i can add users favorite teams, unit testing for that went well but removing favorite teams ended up removing the team from the team table too.. so I'll have to revisit that one. Made it so the view all users jsp also shows each users favorite teams in an unordered list
@@ -124,7 +127,7 @@ Will add if I have the time, and remember! Trying to better the past week or two
   * and then....add teams page, and "team" page
   * ....to be continued
 
-12/7/23
+#### 12/8/23
 
 Things are going well with the indie project. I'm extra happy because the past couple days I wasn't able to do much and was worried about picking back up. Having next steps noted above in the entry from 12/5 was definitely helpful :) Spent a couple hours on various things for the course but mainly continued to work on indie project.
 * User is now added to session upon login.
@@ -139,3 +142,22 @@ Next steps:
 * add/remove favorite team funcitonality for auth'd user
 * ERROR PAGE! routing to it in auth controller
 * ???
+
+
+#### 12/9/23
+
+Pretty solid day of project work. Wish I had more time to get things cleaned up more. Should have done more along the way! Hindsight or whatever. Anyway, spent a few hours and got the following done (still need cleaned up refactored etc)
+* teams page - show all teams
+* team (single) page - show details about selected team
+* update home page for pre-login vs once user is logged in
+  * once user logged in, sees their user info and favorite teams. link to edit favorite teams
+* add and remove teams from user favorite team list.
+* deployed updated webapp to aws
+This is the outcome of the work today, added a number of classes, jsps, tests, etc. to get everything mentioned linked up and functioning smoothly.
+
+NEXT STEPS
+- Looks like that leaves the error page routing. I will do that next.
+- Refactoring and clean up before things get out of hand
+- javadocs
+- more unit tests? coverage is good for the daos utilized, but should probably get some more in there.
+- ???
