@@ -58,20 +58,35 @@ public class UpdateFavorites extends HttpServlet {
         else if (actionType.equals("remove")) {
             String teamToRemoveName = req.getParameter("teamToRemove");
             logger.debug("doPost to remove team: " + teamToRemoveName);
-            removeTeamFromFavorites(teamToRemoveName);
+            User updatedUser = removeTeamFromFavorites(teamToRemoveName, userName);
+            session.setAttribute("currentUser", updatedUser);
+            logger.debug("*** UPDATED USER: " + updatedUser);
         }
         else {
             logger.error("something went wrong, neither add nor remove team was requested...");
         }
 
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
         dispatcher.forward(req, resp);
     }
 
-    private void removeTeamFromFavorites(String teamName) {
+    private User removeTeamFromFavorites(String teamName, String userName) {
         logger.debug("removing team from favorites: " + teamName);
 
+        TeamDao teamDao = new TeamDao();
+        Team teamToRemove = teamDao.getByTeamName(teamName).get(0);
+        logger.debug("team to remove: " + teamToRemove);
+
+        UserDao userDao = new UserDao();
+        User user = userDao.getByUserName(userName).get(0);
+        logger.debug("user to remove from: " + user);
+
+        user.removeTeamFromFavorites(teamToRemove);
+        userDao.saveOrUpdate(user);
+
+        User updatedUser = userDao.getByUserName(userName).get(0);
+        logger.debug("Updated user [IN REMOVE]: " + updatedUser);
+        return updatedUser;
     }
 
     private User addTeamToFavorites(String teamName, String userName) {
