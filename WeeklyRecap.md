@@ -161,3 +161,15 @@ NEXT STEPS
 - javadocs
 - more unit tests? coverage is good for the daos utilized, but should probably get some more in there.
 - ???
+
+#### 12/10/23
+
+Today I completed the following:
+* added error routing and started cleaning up some todos and unneeded code
+* created/updated mockaroo schema/datasets for "players" and set up mock API. integrated this with my indie project so when you go to a team page, you can see it's "player roster" (which is, again, fake players generated via mockaroo)
+
+Next up:
+- javadocs?
+- code cleanup?
+- unit testing?
+- TBD...need to start thinking about the presentation/demo.
