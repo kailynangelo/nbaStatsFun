@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.file.FileStore;
 
 /**
  * A simple servlet to show users in db
@@ -32,7 +33,9 @@ public class UpdateFavorites extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = null;
-        if (req.getAttribute("currentUser") == null) {
+        HttpSession session = req.getSession();
+
+        if (session.getAttribute("currentUser") == null) {
             logger.debug("not logged in. forwarding on to index.jsp");
             dispatcher = req.getRequestDispatcher("/index.jsp");
         }
