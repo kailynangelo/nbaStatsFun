@@ -4,21 +4,26 @@
 <html>
 <body>
 <%@include file="navbar.jsp" %>
-<h1>NBA Teams</h1>
-<table class="table">
-    <thead>
-    <th>Team</th>
-    <th>Location</th>
-    </thead>
-    <tbody>
-    <c:forEach var="team" items="${teams}">
+<div class="container">
+<h1 class="text-center">NBA Teams</h1>
+<div class="table-responsive px-4">
+    <table class="table table-striped table-sm">
+        <thead>
         <tr>
-            <td><a href="${pageContext.request.contextPath}/viewTeam?teamName=${team.teamName}">${team.fullName}</a></td>
-            <td>${team.city}, ${team.state}</td>
+            <th scope="col">Team</th>
+            <th scope="col">Location</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
-<p><a href="index.jsp">Return to Home</a></p>
+        </thead>
+        <tbody>
+        <c:forEach var="team" items="${teams}">
+            <tr>
+                <td><a href="${pageContext.request.contextPath}/viewTeam?teamName=${team.teamName}">${team.fullName}</a></td>
+                <td>${team.city}, ${team.state}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+</div>
 </body>
 </html>

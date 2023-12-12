@@ -1,35 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kaily
-  Date: 12/9/2023
-  Time: 1:20 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@include file="head.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Team Home</title>
-</head>
 <body>
 <%@include file="navbar.jsp" %>
-    <h1>${team.fullName}</h1>
-    <table>
+<hr>
+<div class="container">
+    <h1 class="text-center">${team.fullName}</h1>
+    <div class="table-responsive px-4">
+    <table class="table table-sm">
         <tr><th>Team Name</th><td>${team.teamName}</td></tr>
         <tr><th>Location</th><td>${team.city}, ${team.state}</td></tr>
         <tr><th>Conference</th><td>${team.conference}</td></tr>
         <tr><th>Division</th><td>${team.division}</td></tr>
     </table>
-    <hr>
+    </div>
     <h3>Team Roster</h3>
-    <table>
+    <div class="table-responsive px-4">
+    <table class="table table-striped table-sm">
         <thead>
-            <th>Name</th>
-            <th>Birthdate</th>
-            <th>Position</th>
-            <th>Jersey #</th>
-            <th>Home Country</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthdate</th>
+            <th scope="col">Position</th>
+            <th scope="col">Jersey #</th>
+            <th scope="col">Home Country</th>
         </thead>
         <tbody>
         <c:forEach var="player" items="${players}">
@@ -43,7 +37,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <p><a href="${pageContext.request.contextPath}/teams">View All Teams</a></p>
-    <p><a href="index.jsp">Return to Home</a></p>
+    </div>
+</div>
 </body>
 </html>
