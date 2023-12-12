@@ -173,3 +173,9 @@ Next up:
 - code cleanup?
 - unit testing?
 - TBD...need to start thinking about the presentation/demo.
+- 
+#### 12/11/23
+
+So i went down a bootstrap rabbit hole today... things are looking a little more snazzy though now. Spent too much time tinkering around probably, outcome not too bad but it's been a while since I've worked with all that. I reformatted on some things for the site in general. Set up error page in xml so that no matter the error users will get directed to my specific error page. 
+
+Tomorrow need to clean up code/double check for best practices. Definitely need to add javadocs to some things! 
