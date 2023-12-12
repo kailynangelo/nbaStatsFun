@@ -19,9 +19,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * A simple servlet to show users in db
+ * A servlet to display an individual team page
  */
-
 @WebServlet(
         urlPatterns = {"/viewTeam"}
 )
@@ -34,11 +33,10 @@ public class ViewTeam extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         loadTeamsToSession(req);
-
         String teamName = req.getParameter("teamName");
         HttpSession session = req.getSession();
+        RequestDispatcher dispatcher;
 
-        RequestDispatcher dispatcher = null;
         if (teamName != null && !teamName.isEmpty()) {
             TeamDao dao = new TeamDao();
             Team team = dao.getByTeamName(teamName).get(0);
@@ -55,16 +53,19 @@ public class ViewTeam extends HttpServlet {
             logger.debug("teamName was empty...no team set");
             dispatcher = req.getRequestDispatcher("/error.jsp");
         }
-
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Load teams to session. //TODO refactor, used by several methods
+     *
+     * @param req the http request
+     */
     protected void loadTeamsToSession(HttpServletRequest req) {
 
         HttpSession session = req.getSession();
         if (session.getAttribute("teams") == null) {
             TeamDao dao = new TeamDao();
-            //req.setAttribute("teams", dao.getAllTeams());
             session.setAttribute("teams", dao.getAllTeams());
             logger.debug("teams attribute was empty. added to the session." + dao.getAllTeams());
         }
