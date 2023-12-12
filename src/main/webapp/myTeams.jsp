@@ -6,6 +6,7 @@
     <title>Manage your favorites</title>
 </head>
 <body>
+<%@include file="navbar.jsp" %>
     <h1>Manage your favorite teams</h1>
     <br>
     <h2>${currentUser.userName}'s favorite teams</h2>

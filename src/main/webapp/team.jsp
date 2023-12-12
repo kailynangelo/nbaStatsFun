@@ -13,6 +13,7 @@
     <title>Team Home</title>
 </head>
 <body>
+<%@include file="navbar.jsp" %>
     <h1>${team.fullName}</h1>
     <table>
         <tr><th>Team Name</th><td>${team.teamName}</td></tr>
