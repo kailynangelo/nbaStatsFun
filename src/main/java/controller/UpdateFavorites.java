@@ -31,10 +31,16 @@ public class UpdateFavorites extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loadTeamsToSession(req);
-        logger.debug("forwarding on to myTeams.jsp");
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
+        RequestDispatcher dispatcher = null;
+        if (req.getAttribute("currentUser") == null) {
+            logger.debug("not logged in. forwarding on to index.jsp");
+            dispatcher = req.getRequestDispatcher("/index.jsp");
+        }
+        else {
+            loadTeamsToSession(req);
+            logger.debug("forwarding on to myTeams.jsp");
+            dispatcher = req.getRequestDispatcher("/myTeams.jsp");
+        }
         dispatcher.forward(req, resp);
     }
 
