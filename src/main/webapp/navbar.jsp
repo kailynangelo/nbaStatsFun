@@ -2,9 +2,10 @@
 <div class="container">
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-link text-dark">NBAStatsFun</a></li>
             <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="${pageContext.request.contextPath}/teams" class="nav-link">Teams</a></li>
-            <li class="nav-item"><a href="${pageContext.request.contextPath}/showUsers" class="nav-link">Users</a></li>
+<%--            <li class="nav-item"><a href="${pageContext.request.contextPath}/showUsers" class="nav-link">Users</a></li>--%>
 <c:if test="${empty currentUser}">
             <li class="nav-item"><a href="${pageContext.request.contextPath}/logIn" class="nav-link active" aria-current="page">Log In</a></li>
 </c:if>
