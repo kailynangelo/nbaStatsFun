@@ -31,4 +31,11 @@ class MockarooPlayerDaoTest {
         Player player1 = players.get(0);
         assertEquals("10", player1.getTeamId());
     }
+
+    @Test
+    void getPlayersByTeamFail() {
+
+        List<Player> players = dao.getPlayersByTeam(135);
+        assertEquals(0, players.size());
+    }
 }
