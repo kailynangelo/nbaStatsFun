@@ -15,13 +15,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * A simple servlet to show users in db
+ * A servlet to show teams from the database
  */
 
 @WebServlet(
         urlPatterns = {"/teams"}
 )
-
 public class AllTeams extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
     @Override
@@ -31,14 +30,12 @@ public class AllTeams extends HttpServlet {
         HttpSession session = req.getSession();
         if (session.getAttribute("teams") == null) {
             TeamDao dao = new TeamDao();
-            //req.setAttribute("teams", dao.getAllTeams());
             session.setAttribute("teams", dao.getAllTeams());
-            logger.debug("teams attribute was empty. added to the session." + dao.getAllTeams());
+            logger.debug("teams attribute was empty. added to the session." + session.getAttribute("teams"));
         }
         else {
             logger.debug("teams already exists in the session. no need to add.");
         }
-        logger.debug(session.getAttribute("teams"));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/teams.jsp");
         dispatcher.forward(req, resp);
     }
