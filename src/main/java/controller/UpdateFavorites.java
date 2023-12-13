@@ -18,28 +18,34 @@ import java.io.IOException;
 import java.nio.file.FileStore;
 
 /**
- * A simple servlet to show users in db
+ * A servlet to handle user favorite teams updates
  */
-
 @WebServlet(
         urlPatterns = {"/updateFavorites"}
 )
-
 public class UpdateFavorites extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Forwards the user to a page where they can manage their favorite teams.
+     * If no user is logged in, redirects to homepage.
+     *
+     * @param req servlet request
+     * @param resp servlet response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = null;
+        RequestDispatcher dispatcher;
         HttpSession session = req.getSession();
 
         if (session.getAttribute("currentUser") == null) {
             logger.debug("not logged in. forwarding on to index.jsp");
             dispatcher = req.getRequestDispatcher("/index.jsp");
-        }
-        else {
+        } else {
             loadTeamsToSession(req);
             logger.debug("forwarding on to myTeams.jsp");
             dispatcher = req.getRequestDispatcher("/myTeams.jsp");
@@ -47,6 +53,15 @@ public class UpdateFavorites extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Handles updates to users favorite teams. Depending on the action
+     * button submitted, a team will be added or removed for the user.
+     *
+     * @param req servlet request
+     * @param resp servlet response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -74,11 +89,17 @@ public class UpdateFavorites extends HttpServlet {
         else {
             logger.error("something went wrong, neither add nor remove team was requested...");
         }
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/myTeams.jsp");
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Remove a team from a user's favorite teams
+     *
+     * @param teamName the name of the team to remove
+     * @param userName the user's username
+     * @return the updated user with the team removed from their favorites
+     */
     private User removeTeamFromFavorites(String teamName, String userName) {
         logger.debug("removing team from favorites: " + teamName);
 
@@ -98,8 +119,14 @@ public class UpdateFavorites extends HttpServlet {
         return updatedUser;
     }
 
+    /**
+     * Add a team to a user's favorite teams
+     *
+     * @param teamName the name of the team to add
+     * @param userName the user's username
+     * @return the updated user with the team added to their favorites
+     */
     private User addTeamToFavorites(String teamName, String userName) {
-
         logger.debug("adding team to " + userName + "'s favorites: " + teamName);
 
         TeamDao teamDao = new TeamDao();
@@ -111,7 +138,6 @@ public class UpdateFavorites extends HttpServlet {
         logger.debug("user to add to: " + user);
 
         user.addTeamToFavorites(teamToAdd);
-
         userDao.saveOrUpdate(user);
 
         User updatedUser = userDao.getByUserName(userName).get(0);
@@ -120,12 +146,16 @@ public class UpdateFavorites extends HttpServlet {
     }
 
 
+    /**
+     * Load teams to session.
+     *
+     * @param req the http request //TODO refactor, used by multiple servlets
+     */
     protected void loadTeamsToSession(HttpServletRequest req) {
 
         HttpSession session = req.getSession();
         if (session.getAttribute("teams") == null) {
             TeamDao dao = new TeamDao();
-            //req.setAttribute("teams", dao.getAllTeams());
             session.setAttribute("teams", dao.getAllTeams());
             logger.debug("teams attribute was empty. added to the session." + dao.getAllTeams());
         }
