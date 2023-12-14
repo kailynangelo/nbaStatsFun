@@ -179,3 +179,13 @@ Next up:
 So i went down a bootstrap rabbit hole today... things are looking a little more snazzy though now. Spent too much time tinkering around probably, outcome not too bad but it's been a while since I've worked with all that. I reformatted on some things for the site in general. Set up error page in xml so that no matter the error users will get directed to my specific error page. 
 
 Tomorrow need to clean up code/double check for best practices. Definitely need to add javadocs to some things! 
+
+#### 12/12/23
+
+Long day at work(s) and felt pretty drained. Wasn't able to get as much as I'd hoped done but still got to go through and review for presentation a bit. 
+
+#### 12/13/23
+
+Ended up having a kind of off day. Was able to get some work done and get my log4j file logging working again it wasn't separating things out as expected recently (got caught up with this for a little to long maybe, but definitely improved my understanding of it further). Recorded my indie project presentation. Tried editing it shorter but that wasn't working, so tried rerecording a few times but then it started getting longer... there were a lot of things I wanted to touch on! Hopefully it's not too bad. I watched it at regular speed and it did feel long (but by this point I was exhausted). Then watched it at 1.5 speed and that was better :)
+
+Next steps: COMPLETE LEARNING TRACKER! will need to do this tomorrow afternoon probably due to increasingly painful headache 
